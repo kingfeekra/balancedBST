@@ -93,10 +93,20 @@ function minValue(root)
         return minv;
 }
 
+function find(root, key) {
+    if (root == null ||root.data == key) {
+        return root;
+    }
+    if (root.data < key) {
+       return find(root.right, key);
+    }
+    return find(root.left, key);
+}
+
 let array = [1, 2, 3, 4, 5, 6, 7];
 
 let tree = new Tree(array);
 insert(10);
 deleteRec(tree.root, 3);
 inorder(tree.root);
-console.log(tree.root);
+console.log(find(tree.root, 5))
