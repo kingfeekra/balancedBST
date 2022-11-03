@@ -18,4 +18,14 @@ function inorder(root)
         }
 }
 
-export {inorder};
+function postOrder(node) {
+    if (node == null)
+    {
+        return;
+    }
+    postOrder(node.left);
+    postOrder(node.right);
+    document.write(node.data + " ");
+}
+
+export {inorder, preOrder, postOrder}

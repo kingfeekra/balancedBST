@@ -1,4 +1,4 @@
-import { inorder } from "./traversal.js";
+import { preOrder, inorder, postOrder } from "./traversal.js";
 
 class Node
 {
@@ -103,10 +103,59 @@ function find(root, key) {
     return find(root.left, key);
 }
 
+function levelOrder(root) {
+    if(root == null) {
+        return null;
+    }
+    let queue = [root];
+    while(queue.length != 0) {
+        let node = queue.pop();
+        console.log(node.data);
+        if (node.left) queue.unshift(node.left)
+        if (node.right) queue.unshift(node.right)
+    }
+}
+
+function height(node) {
+    if (node == null) {
+            return 0;
+    }
+    else
+    {
+        /* compute the depth from node */
+        let lDepth = height(node.left);
+        let rDepth = height(node.right);
+
+        /* use the larger one */
+        if (lDepth > rDepth)
+            return (lDepth + 1);
+            else
+            return (rDepth + 1);
+    }
+}
+
+function depth(root, node) {
+    console.log(node);
+    if (node == null) {
+        return 0;
+    }
+    else if(node != root.left && node != root.right)
+    {
+         
+        let lDepth = depth(root.left);
+        let rDepth = depth(root.right);
+
+        /* use the larger one */
+        if (lDepth > rDepth)
+            return (lDepth + 1);
+            else
+            return (rDepth + 1);
+    }
+}
+
 let array = [1, 2, 3, 4, 5, 6, 7];
 
 let tree = new Tree(array);
-insert(10);
-deleteRec(tree.root, 3);
 inorder(tree.root);
 console.log(find(tree.root, 5))
+console.log(depth(tree.root, find(tree.root, 1)));
