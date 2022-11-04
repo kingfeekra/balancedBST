@@ -117,6 +117,9 @@ function levelOrder(root) {
 }
 
 function height(root) {
+    if(root == null) {
+        return 0
+    }
     // Initialising a variable to count the
     // height of tree
     let depth = 0
@@ -177,9 +180,49 @@ function depth(root, x)
     return dist;
 }
 
+function isBalanced(root){
+     
+    // Base condition
+    if(root == null) {
+        return true
+    }
+    // for left and right subtree height
+    let lh = height(root.left)
+    let rh = height(root.right)
+ 
+    // allowed values for (lh - rh) are 1, -1, 0, abs gives either 1 or 0
+    if (Math.abs(lh - rh) <= 1 && isBalanced(
+    root.left)== true && isBalanced(root.right) == true) {
+        return true
+    } 
+ 
+    // if we reach here means tree is not
+    // height-balanced tree
+    return false
+}
+let newArray = [];
+function rebalance(root) {
+    if (root != null) {
+        newArray.push(root.data);
+        rebalance(root.left);
+        rebalance(root.right);
+    }
+    newArray.sort(function(a, b){return a-b}) //sorts array in ascending order
+    console.log(newArray);
+    let newTree = new Tree(newArray);
+    tree = newTree;
+}
+
 let array = [1, 2, 3, 4, 5, 6, 7];
 
 let tree = new Tree(array);
-inorder(tree.root);
+tree.root.left.left.left = new Node(15);
+tree.root.left.left.left.left = new Node(18);
+tree.root.left.left.left.left.left = new Node(19);
+tree.root.left.left.left.left.left.left = new Node(23);
 //console.log(find(tree.root, 5))
-console.log(depth(tree.root, find(tree.root, 1)));
+//console.log(depth(tree.root, find(tree.root, 1)));
+console.log(isBalanced(tree.root));
+rebalance(tree.root);
+inorder(tree.root);
+console.log(isBalanced(tree.root));
