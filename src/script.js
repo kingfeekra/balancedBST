@@ -116,46 +116,70 @@ function levelOrder(root) {
     }
 }
 
-function height(node) {
-    if (node == null) {
-            return 0;
+function height(root) {
+    // Initialising a variable to count the
+    // height of tree
+    let depth = 0
+ 
+    let q = []
+     
+    // pushing first level element along with null
+    q.push(root)
+    q.push(null)
+    while(q.length>0){
+        let temp = q.shift()
+     
+        // When null encountered, increment the value
+        if(temp == null)
+            depth += 1
+         
+        // If null not encountered, keep moving
+        if(temp != null){
+            if(temp.left)
+                q.push(temp.left)
+             
+            if(temp.right)
+                q.push(temp.right)
+        }
+             
+        // If queue still have elements left,
+        // push null again to the queue.
+        else if(q.length>0)
+            q.push(null)
     }
-    else
-    {
-        /* compute the depth from node */
-        let lDepth = height(node.left);
-        let rDepth = height(node.right);
-
-        /* use the larger one */
-        if (lDepth > rDepth)
-            return (lDepth + 1);
-            else
-            return (rDepth + 1);
-    }
+    return depth
 }
 
-function depth(root, node) {
-    console.log(node);
-    if (node == null) {
-        return 0;
-    }
-    else if(node != root.left && node != root.right)
+function depth(root, x)
+{
+      
+    // Base case
+    if (root == null)
+        return -1;
+  
+    // Initialize distance as -1
+    let dist = -1;
+  
+    // Check if x is current node=
+    if ((root.data == x.data)|| 
+      
+        // Otherwise, check if x is
+        // present in the left subtree
+        (dist = depth(root.left, x)) >= 0 || 
+          
+        // Otherwise, check if x is
+        // present in the right subtree
+        (dist = depth(root.right, x)) >= 0)
     {
-         
-        let lDepth = depth(root.left);
-        let rDepth = depth(root.right);
-
-        /* use the larger one */
-        if (lDepth > rDepth)
-            return (lDepth + 1);
-            else
-            return (rDepth + 1);
+        // Return depth of the node
+        return dist + 1;
     }
+    return dist;
 }
 
 let array = [1, 2, 3, 4, 5, 6, 7];
 
 let tree = new Tree(array);
 inorder(tree.root);
-console.log(find(tree.root, 5))
+//console.log(find(tree.root, 5))
 console.log(depth(tree.root, find(tree.root, 1)));
