@@ -1,5 +1,5 @@
 import { preOrder, inorder, postOrder } from "./traversal.js";
-
+import {driver, randomArray} from "./driver.js";
 class Node
 {
     constructor(data)
@@ -208,21 +208,19 @@ function rebalance(root) {
         rebalance(root.right);
     }
     newArray.sort(function(a, b){return a-b}) //sorts array in ascending order
-    console.log(newArray);
     let newTree = new Tree(newArray);
     tree = newTree;
 }
 
-let array = [1, 2, 3, 4, 5, 6, 7];
-
+let array = randomArray(9);
 let tree = new Tree(array);
-tree.root.left.left.left = new Node(15);
-tree.root.left.left.left.left = new Node(18);
-tree.root.left.left.left.left.left = new Node(19);
-tree.root.left.left.left.left.left.left = new Node(23);
-//console.log(find(tree.root, 5))
-//console.log(depth(tree.root, find(tree.root, 1)));
+/*console.log(find(tree.root, 5))
+console.log(depth(tree.root, find(tree.root, 1)));
 console.log(isBalanced(tree.root));
 rebalance(tree.root);
 inorder(tree.root);
-console.log(isBalanced(tree.root));
+console.log(randomArray(8));*/
+
+driver();
+
+export{isBalanced, rebalance, insert, Tree, tree};
