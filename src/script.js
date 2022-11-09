@@ -214,13 +214,6 @@ function rebalance(root) {
 
 let array = randomArray(9);
 let tree = new Tree(array);
-/*console.log(find(tree.root, 5))
-console.log(depth(tree.root, find(tree.root, 1)));
-console.log(isBalanced(tree.root));
-rebalance(tree.root);
-inorder(tree.root);
-console.log(randomArray(8));*/
-
 driver();
 
 export{isBalanced, rebalance, insert, Tree, tree};

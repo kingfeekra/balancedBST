@@ -15,18 +15,18 @@ function driver() {
 
 isBalanced(tree.root);
 
-insert(tree.root, 102);
-insert(tree.root, 103);
-insert(tree.root, 104);
-insert(tree.root, 105);
-insert(tree.root, 106);
-insert(tree.root, 107);
+insert(102);
+insert(103);
+insert(104);
+insert(105);
+insert(106);
+insert(107);
 
 inorder(tree.root);
 
 console.log(isBalanced(tree.root));
 
-console.log(rebalance(tree.root));
+rebalance(tree.root);
 
 console.log(isBalanced(tree.root));
 
